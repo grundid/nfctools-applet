@@ -5,5 +5,27 @@ This project contains the source code for the NFC Tools Java Applet.
 This applet is used to establish communication to a NFC desktop reader. 
 It is used in the Android Beam Demo at http://grundid.de/nfc and the NDEF Editor http://ndefeditor.com
 
+To build a version of this applet you will need a (self-signed) certificate. 
+Please check the web how to create certificates for Java applets.
+
+Once you have a certificate create a profile entry in your maven settings.xml file like this or update the pom.xml directly:
+
+<profile>
+  <id>ndef-applet-release</id>
+  <properties>
+	<sign.keystore>ndef-applet.keystore</sign.keystore>
+	<sign.alias>your-alias</sign.alias>
+	<sign.storepass>your-storepass</sign.storepass>
+	<sign.keypass>your-keypass</sign.keypass>
+  </properties>
+</profile>
+
+Then to compile the applet call
+
+mvn -P release,ndef-applet-release package
+
+nfctools-applet-1.0-SNAPSHOT-jar-with-dependencies-small.jar will be your signed applet jar.
+
+
 Please note that I do not endorse the use of Java Applets in new projects. 
 Many users might have Java disabled in their browsers. I’m sharing this source only for demo purposes. 
