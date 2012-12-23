@@ -1,0 +1,9 @@
+== NFC Tools Java Applet ==
+
+This project contains the source code for the NFC Tools Java Applet.
+
+This applet is used to establish communication to a NFC desktop reader. 
+It is used in the Android Beam Demo at http://grundid.de/nfc and the NDEF Editor http://ndefeditor.com
+
+Please note that I do not endorse the use of Java Applets in new projects. 
+Many users might have Java disabled in their browsers. I’m sharing this source only for demo purposes. 
