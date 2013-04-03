@@ -48,6 +48,7 @@ public class NfcService {
 	public NfcService(TerminalStatusListener statusListener) {
 		TerminalHandler terminalHandler = new TerminalHandler();
 		terminalHandler.addTerminal(new AcsTerminal());
+		terminalHandler.addTerminal(new SclTerminal());	// otherwise doesn't work with that class of devvices
 
 		terminal = terminalHandler.getAvailableTerminal();
 		terminal.setStatusListener(statusListener);
