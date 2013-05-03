@@ -36,20 +36,19 @@ import org.nfctools.scio.TerminalHandler;
 import org.nfctools.scio.TerminalMode;
 import org.nfctools.scio.TerminalStatusListener;
 import org.nfctools.spi.acs.AcsTerminal;
+import org.nfctools.spi.scm.SclTerminal;
 
 public class NfcService {
 
 	private NdefPushLlcpService ndefPushLlcpService;
 	private boolean initiatorMode = true;
-
 	private LlcpOverNfcip llcpOverNfcip;
 	private Terminal terminal;
 
 	public NfcService(TerminalStatusListener statusListener) {
 		TerminalHandler terminalHandler = new TerminalHandler();
 		terminalHandler.addTerminal(new AcsTerminal());
-		terminalHandler.addTerminal(new SclTerminal());	// otherwise doesn't work with that class of devvices
-
+		terminalHandler.addTerminal(new SclTerminal()); // otherwise doesn't work with that class of devvices
 		terminal = terminalHandler.getAvailableTerminal();
 		terminal.setStatusListener(statusListener);
 	}
@@ -68,7 +67,6 @@ public class NfcService {
 		llcpOverNfcip = new LlcpOverNfcip();
 		LlcpConnectionManager connectionManager = llcpOverNfcip.getConnectionManager();
 		connectionManager.registerWellKnownServiceAccessPoint(LlcpConstants.COM_ANDROID_NPP, ndefPushLlcpService);
-
 		TerminalMode terminalMode = initiatorMode ? TerminalMode.INITIATOR : TerminalMode.TARGET;
 		NfcAdapter nfcAdapter = new NfcAdapter(terminal, terminalMode);
 		nfcAdapter.registerTagListener(new Type2NfcTagListener(ndefOperationsListener));
