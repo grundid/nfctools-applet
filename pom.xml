@@ -176,11 +176,10 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.java</groupId>
+			<groupId>de.grundid.netscape</groupId>
 			<artifactId>plugin</artifactId>
 			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${java.home}/lib/plugin.jar</systemPath>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
